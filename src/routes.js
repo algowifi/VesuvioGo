@@ -10,6 +10,7 @@ import Page404 from './pages/Page404';
 import ProductsPage from './pages/ProductsPage';
 import DashboardAppPage from './pages/DashboardAppPage';
 import MapPage from './pages/MapPage';
+import ListPage from './pages/ListPage';
 
 // ----------------------------------------------------------------------
 
@@ -39,7 +40,7 @@ export default function Router() {
     },
     {
       path: 'list', 
-      element: <UserPage />,
+      element: <ListPage />,
     },
     {
       path: 'login',

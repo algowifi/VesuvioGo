@@ -1,4 +1,5 @@
 // component
+import Icon from '@mui/material/Icon';
 import SvgColor from '../../../components/svg-color';
 
 // ----------------------------------------------------------------------
@@ -9,7 +10,11 @@ const navConfig = [
   {
     title: 'map',
     path: '/map',
-    icon: icon('ic_analytics'),
+    icon: <Icon>map</Icon>,
+  }, {
+    title: 'list',
+    path: '/list',
+    icon: <Icon>checklist</Icon>,
   }
 ];
 
