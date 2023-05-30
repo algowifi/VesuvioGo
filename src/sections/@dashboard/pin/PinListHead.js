@@ -47,7 +47,6 @@ export default function UserListHead({
             key={headCell.id}
             align={headCell.alignRight ? 'right' : 'left'}
             sortDirection={orderBy === headCell.id ? order : false}
-            colspan="1"
           >
             {headCell.label}
             {/*

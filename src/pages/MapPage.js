@@ -24,7 +24,6 @@ const Main = styled('div')(({ theme }) => ({
   overflow: 'auto',
   height: `calc(100vh - ${APP_BAR_MOBILE}px)`,
   marginTop: APP_BAR_MOBILE,
-  backgroundColor: "red",
   [theme.breakpoints.up('lg')]: {
     height: `calc(100vh - ${APP_BAR_DESKTOP}px)`,
     marginTop: APP_BAR_DESKTOP + 24,
@@ -37,10 +36,12 @@ const Main = styled('div')(({ theme }) => ({
 
 export default function MapPage() {
   const [open, setOpen] = useState(false);
+  const [searchValue, setSearchValue] = useState("")
+
 
   return (
     <StyledRoot>
-      <Header onOpenNav={() => setOpen(true)} />
+      <Header onOpenNav={() => setOpen(true)} searchValue={searchValue} setSearchValue={setSearchValue}/>
 
       <Nav openNav={open} onCloseNav={() => setOpen(false)} />
 

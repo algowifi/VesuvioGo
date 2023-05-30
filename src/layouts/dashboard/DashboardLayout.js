@@ -22,7 +22,6 @@ const Main = styled('div')(({ theme }) => ({
   overflow: 'auto',
   height: `calc(100vh - ${APP_BAR_MOBILE}px)`,
   marginTop: APP_BAR_MOBILE,
-  backgroundColor: "red",
   [theme.breakpoints.up('lg')]: {
     height: `calc(100vh - ${APP_BAR_DESKTOP}px)`,
     marginTop: APP_BAR_DESKTOP + 24,

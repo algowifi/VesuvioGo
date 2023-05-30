@@ -32,7 +32,7 @@ const StyledSearchbar = styled('div')(({ theme }) => ({
 
 // ----------------------------------------------------------------------
 
-export default function Searchbar() {
+export default function Searchbar({setSearchValue, searchValue}) {
   const [open, setOpen] = useState(false);
 
   const handleOpen = () => {
@@ -40,6 +40,7 @@ export default function Searchbar() {
   };
 
   const handleClose = () => {
+    setSearchValue("")
     setOpen(false);
   };
 
@@ -65,10 +66,9 @@ export default function Searchbar() {
                 </InputAdornment>
               }
               sx={{ mr: 1, fontWeight: 'fontWeightBold' }}
+              onChange={(v) => setSearchValue(v.target.value)}
+              value={searchValue}
             />
-            <Button variant="contained" onClick={handleClose}>
-              Search
-            </Button>
           </StyledSearchbar>
         </Slide>
       </div>

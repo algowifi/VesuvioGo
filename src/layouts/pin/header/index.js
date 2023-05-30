@@ -2,15 +2,13 @@ import PropTypes from 'prop-types';
 // @mui
 import { styled } from '@mui/material/styles';
 import { Box, Stack, AppBar, Toolbar, IconButton, Typography } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 // utils
 import { bgBlur } from '../../../utils/cssStyles';
 // components
 import Iconify from '../../../components/iconify';
 //
-import Searchbar from './Searchbar';
-import AccountPopover from './AccountPopover';
-import LanguagePopover from './LanguagePopover';
-import NotificationsPopover from './NotificationsPopover';
+import LanguagePopover from '../../dashboard/header/LanguagePopover';
 
 // ----------------------------------------------------------------------
 
@@ -44,18 +42,23 @@ Header.propTypes = {
 };
 
 export default function Header({ onOpenNav, searchValue, setSearchValue }) {
+  const navigate = useNavigate()
+  const goBack = () => {
+    navigate(-1)
+  }
+
   return (
     <StyledRoot>
       <StyledToolbar>
         <IconButton
-          onClick={onOpenNav}
+          onClick={goBack}
           sx={{
             mr: 1,
             color: 'text.primary',
             display: { lg: 'none' },
           }}
         >
-          <Iconify icon="eva:menu-2-fill" />
+          <Iconify icon="material-symbols:arrow-back" />
         </IconButton>
 
         <Box sx={{ flexGrow: 1 }} ><Typography variant="h4">Vesuvio GO</Typography></Box>
@@ -68,7 +71,6 @@ export default function Header({ onOpenNav, searchValue, setSearchValue }) {
             sm: 1,
           }}
         >
-          <Searchbar setSearchValue={setSearchValue} searchValue={searchValue}/>
           <LanguagePopover />
           {/* 
           <NotificationsPopover />

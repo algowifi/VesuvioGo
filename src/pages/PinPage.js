@@ -35,7 +35,7 @@ import { PinListHead } from '../sections/@dashboard/pin';
 // mock
 import USERLIST from '../_mock/user';
 //
-import Header from '../layouts/dashboard/header';
+import Header from '../layouts/pin/header';
 import Nav from '../layouts/dashboard/nav';
 import allPins from '../_mock/pins';
 import RoundedPin from '../components/RoundedPin'
@@ -146,11 +146,6 @@ export default function MapPage() {
     setSelected([]);
   };
 
-  const navigate = useNavigate();
-  const navigateToPin = id => {
-    navigate(`/pin/${id}`);
-  }
-
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - USERLIST.length) : 0;
 
   const isNotFound = !filteredPins.length && !!searchValue;
@@ -163,76 +158,8 @@ export default function MapPage() {
 
       <Main>
           <Scrollbar>
-            <TableContainer>
-              <Table>
-                <PinListHead
-                  order={order}
-                  orderBy={orderBy}
-                  headLabel={TABLE_HEAD}
-                  rowCount={USERLIST.length}
-                  numSelected={selected.length}
-                  onRequestSort={handleRequestSort}
-                  onSelectAllClick={handleSelectAllClick}
-                />
-                <TableBody>
-                  {filteredPins.map((row) => {
-                    const {
-                      id,
-                      name,
-                      points,
-                      thumbnail,
-                      isVisited
-                    } = row
-
-                    return (
-                      <TableRow hover key={id} tabIndex={-1} role="checkbox" onClick={() => navigateToPin(id)}>
-                        <TableCell component="th" scope="row">
-                          <Stack direction="row" alignItems="center" spacing={1}>
-                            <RoundedPin src={thumbnail} />
-                            <Typography variant="subtitle2" noWrap style={{maxWidth: 200}}>
-                              {name}
-                            </Typography>
-                          </Stack>
-                        </TableCell>
-
-                        <TableCell align="right">{isVisited ? "visited" : "to visit"}</TableCell>
-                      </TableRow>
-                    );
-                  })}
-                  {emptyRows > 0 && (
-                    <TableRow style={{ height: 53 * emptyRows }}>
-                      <TableCell colSpan={6} />
-                    </TableRow>
-                  )}
-                </TableBody>
-
-                {isNotFound && (
-                  <TableBody>
-                    <TableRow>
-                      <TableCell align="center" colSpan={6} sx={{ py: 3 }}>
-                        <Paper
-                          sx={{
-                            textAlign: 'center',
-                          }}
-                        >
-                          <Typography variant="h6" paragraph>
-                            Not found
-                          </Typography>
-
-                          <Typography variant="body2">
-                            No results found for &nbsp;
-                            <strong>&quot;{searchValue}&quot;</strong>.
-                            <br /> Try checking for typos or using complete words.
-                          </Typography>
-                        </Paper>
-                      </TableCell>
-                    </TableRow>
-                  </TableBody>
-                )}
-              </Table>
-            </TableContainer>
+            a
           </Scrollbar>
-
       </Main>
     </StyledRoot>
   );

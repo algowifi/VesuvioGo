@@ -11,21 +11,23 @@ import ProductsPage from './pages/ProductsPage';
 import DashboardAppPage from './pages/DashboardAppPage';
 import MapPage from './pages/MapPage';
 import ListPage from './pages/ListPage';
+import PinPage from './pages/PinPage';
 
 // ----------------------------------------------------------------------
 
 export default function Router() {
   const routes = useRoutes([
     {
-      path: '/map',
+      path: 'map',
       element: <MapPage />,
-      children: [
-        { element: <Navigate to="/dashboard/app" />, index: true },
-        { path: 'app', element: <DashboardAppPage /> },
-        { path: 'user', element: <UserPage /> },
-        { path: 'products', element: <ProductsPage /> },
-        { path: 'blog', element: <BlogPage /> },
-      ],
+    },
+    {
+      path: 'list', 
+      element: <ListPage />,
+    },
+    {
+      path: 'pin/:id', 
+      element: <PinPage />,
     },
     {
       path: '/dashboard',
@@ -37,10 +39,6 @@ export default function Router() {
         { path: 'products', element: <ProductsPage /> },
         { path: 'blog', element: <BlogPage /> },
       ],
-    },
-    {
-      path: 'list', 
-      element: <ListPage />,
     },
     {
       path: 'login',
@@ -56,7 +54,7 @@ export default function Router() {
     },
     {
       path: '*',
-      element: <Navigate to="/404" replace />,
+      element: <Navigate to="/map" replace />,
     },
   ]);
 
