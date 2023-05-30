@@ -13,7 +13,7 @@ import ScrollToTop from './components/scroll-to-top';
 export default function App() {
   return (
     <HelmetProvider>
-      <BrowserRouter>
+      <BrowserRouter  basename={"VesuvioGo"}>
         <ThemeProvider>
           <ScrollToTop />
           <StyledChart />
