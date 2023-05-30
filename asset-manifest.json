@@ -1,12 +1,12 @@
 {
   "files": {
-    "main.js": "/static/js/main.a7e02a56.js",
-    "static/js/496.c8bc0447.chunk.js": "/static/js/496.c8bc0447.chunk.js",
-    "index.html": "/index.html",
-    "main.a7e02a56.js.map": "/static/js/main.a7e02a56.js.map",
-    "496.c8bc0447.chunk.js.map": "/static/js/496.c8bc0447.chunk.js.map"
+    "main.js": "/VesuvioGo/static/js/main.c48ad115.js",
+    "static/js/496.eb3c88e2.chunk.js": "/VesuvioGo/static/js/496.eb3c88e2.chunk.js",
+    "index.html": "/VesuvioGo/index.html",
+    "main.c48ad115.js.map": "/VesuvioGo/static/js/main.c48ad115.js.map",
+    "496.eb3c88e2.chunk.js.map": "/VesuvioGo/static/js/496.eb3c88e2.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/main.a7e02a56.js"
+    "static/js/main.c48ad115.js"
   ]
 }
