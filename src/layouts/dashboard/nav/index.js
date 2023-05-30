@@ -53,6 +53,8 @@ export default function Nav({ openNav, onCloseNav }) {
         '& .simplebar-content': { height: 1, display: 'flex', flexDirection: 'column' },
       }}
     >
+      <NavSection data={navConfig} />
+      {/**
       <Box sx={{ px: 2.5, py: 3, display: 'inline-flex' }}>
         <Logo />
       </Box>
@@ -83,7 +85,7 @@ export default function Nav({ openNav, onCloseNav }) {
         <Stack alignItems="center" spacing={3} sx={{ pt: 5, borderRadius: 2, position: 'relative' }}>
           <Box
             component="img"
-            src="/assets/illustrations/illustration_avatar.png"
+            src="/VesuvioGo/assets/illustrations/illustration_avatar.png"
             sx={{ width: 100, position: 'absolute', top: -50 }}
           />
 
@@ -102,6 +104,8 @@ export default function Nav({ openNav, onCloseNav }) {
           </Button>
         </Stack>
       </Box>
+       */}
+      
     </Scrollbar>
   );
 

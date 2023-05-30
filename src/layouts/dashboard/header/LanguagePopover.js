@@ -9,12 +9,12 @@ const LANGS = [
   {
     value: 'en',
     label: 'English',
-    icon: '/assets/icons/ic_flag_en.svg',
+    icon: '/VesuvioGo/assets/icons/ic_flag_en.svg',
   },
   {
     value: 'it',
     label: 'Italian',
-    icon: '/assets/icons/ic_flag_it.svg',
+    icon: '/VesuvioGo/assets/icons/ic_flag_it.svg',
   },
 ];
 

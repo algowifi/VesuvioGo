@@ -9,11 +9,23 @@ import LoginPage from './pages/LoginPage';
 import Page404 from './pages/Page404';
 import ProductsPage from './pages/ProductsPage';
 import DashboardAppPage from './pages/DashboardAppPage';
+import MapPage from './pages/MapPage';
 
 // ----------------------------------------------------------------------
 
 export default function Router() {
   const routes = useRoutes([
+    {
+      path: '/map',
+      element: <MapPage />,
+      children: [
+        { element: <Navigate to="/dashboard/app" />, index: true },
+        { path: 'app', element: <DashboardAppPage /> },
+        { path: 'user', element: <UserPage /> },
+        { path: 'products', element: <ProductsPage /> },
+        { path: 'blog', element: <BlogPage /> },
+      ],
+    },
     {
       path: '/dashboard',
       element: <DashboardLayout />,
@@ -24,6 +36,10 @@ export default function Router() {
         { path: 'products', element: <ProductsPage /> },
         { path: 'blog', element: <BlogPage /> },
       ],
+    },
+    {
+      path: 'list', 
+      element: <UserPage />,
     },
     {
       path: 'login',
