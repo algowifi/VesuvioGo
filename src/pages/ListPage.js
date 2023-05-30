@@ -179,7 +179,6 @@ export default function MapPage() {
 
       <Main>
       
-      <Container>
 
           <Scrollbar>
             <TableContainer>
@@ -252,7 +251,6 @@ export default function MapPage() {
               </Table>
             </TableContainer>
           </Scrollbar>
-      </Container>
 
       </Main>
     </StyledRoot>
