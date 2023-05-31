@@ -7,6 +7,8 @@ import { styled } from '@mui/material/styles';
 //
 import Header from '../layouts/dashboard/header';
 import Nav from '../layouts/dashboard/nav';
+import allPins from '../_mock/pins';
+import RoundedPin from '../components/RoundedPin';
 
 // ----------------------------------------------------------------------
 
@@ -31,6 +33,10 @@ const Main = styled('div')(({ theme }) => ({
     paddingRight: theme.spacing(2),
   },
 }));
+
+const Marker = ({item}) => {
+  return <RoundedPin src={item.thumbnail} />
+}
 
 // ----------------------------------------------------------------------
 
@@ -62,7 +68,9 @@ export default function MapPage() {
         // hoverDistance={K_HOVER_DISTANCE}
         // distanceToMouse={this._distanceToMouse}
         >
-        {/* Markers */}
+          {allPins.map(i => 
+            <Marker lat={i.lat} lng={i.lng}  item={i} key={i.id}/>
+          )}
       </GoogleMap>
       </Main>
     </StyledRoot>

@@ -19,6 +19,10 @@ import { Grid, Container, Typography } from '@mui/material';
 // } from '../sections/@dashboard/app';
 import GoogleMap from 'google-map-react';
 
+const Marker = props => {
+  return <div style={{width:50, height:50, backgroundColor: 'red'}} className='asdasdasd'>asdasdasd</div>
+}
+
 // ----------------------------------------------------------------------
 
 export default function DashboardAppPage() {
@@ -41,8 +45,8 @@ export default function DashboardAppPage() {
         // margin={[K_MARGIN_TOP, K_MARGIN_RIGHT, K_MARGIN_BOTTOM, K_MARGIN_LEFT]}
         // hoverDistance={K_HOVER_DISTANCE}
         // distanceToMouse={this._distanceToMouse}
-        >
-        {/* Markers */}
+      >
+        <Marker lat={40.70} lng={14.40} />
       </GoogleMap>
 
 
