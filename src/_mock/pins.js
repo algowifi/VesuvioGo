@@ -1,6 +1,6 @@
 const thumbnail = (name) => `/VesuvioGo/assets/images/pins/${name}`
 
-export default [
+const pins = [
   {
     id: 0,
     lat: 40.825,
@@ -19,3 +19,12 @@ export default [
     isVisited: true
   }
 ]
+
+const getPinById = id => {
+  return pins.find(i => i.id === id) || null
+}
+
+export {
+  pins,
+  getPinById
+}

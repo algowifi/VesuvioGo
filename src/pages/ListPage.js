@@ -37,7 +37,7 @@ import USERLIST from '../_mock/user';
 //
 import Header from '../layouts/dashboard/header';
 import Nav from '../layouts/dashboard/nav';
-import allPins from '../_mock/pins';
+import { pins as allPins } from '../_mock/pins';
 import RoundedPin from '../components/RoundedPin'
 
 // ----------------------------------------------------------------------

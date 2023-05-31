@@ -37,7 +37,7 @@ import USERLIST from '../_mock/user';
 //
 import Header from '../layouts/pin/header';
 import Nav from '../layouts/dashboard/nav';
-import allPins from '../_mock/pins';
+import { pins as allPins } from '../_mock/pins';
 import RoundedPin from '../components/RoundedPin'
 
 // ----------------------------------------------------------------------
@@ -90,7 +90,7 @@ export default function MapPage() {
 
       <Main>
           <Scrollbar>
-            a
+            There's still work to do
           </Scrollbar>
       </Main>
     </StyledRoot>

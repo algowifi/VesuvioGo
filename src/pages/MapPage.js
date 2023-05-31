@@ -1,13 +1,14 @@
-import { useState } from 'react';
-import { Outlet } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 import GoogleMap from 'google-map-react';
 import { Helmet } from 'react-helmet-async';
 // @mui
 import { styled } from '@mui/material/styles';
+
+import { useNavigate } from 'react-router-dom';
 //
 import Header from '../layouts/dashboard/header';
 import Nav from '../layouts/dashboard/nav';
-import allPins from '../_mock/pins';
+import { pins as allPins } from '../_mock/pins';
 import RoundedPin from '../components/RoundedPin';
 
 // ----------------------------------------------------------------------
@@ -34,8 +35,8 @@ const Main = styled('div')(({ theme }) => ({
   },
 }));
 
-const Marker = ({item}) => {
-  return <RoundedPin src={item.thumbnail} />
+const Marker = ({item, onClick}) => {
+  return <RoundedPin src={item.thumbnail} onClick={onClick}/>
 }
 
 // ----------------------------------------------------------------------
@@ -43,6 +44,20 @@ const Marker = ({item}) => {
 export default function MapPage() {
   const [open, setOpen] = useState(false);
   const [searchValue, setSearchValue] = useState("")
+
+  const navigate = useNavigate();
+  const navigateToPin = id => {
+    navigate(`/pin/${id}`);
+  }
+
+  const [coords, setCoords] = useState(null)
+  useEffect(() => {
+    setInterval(async () => {
+      navigator.geolocation.getCurrentPosition(
+        (i) => setCoords(i.coords), 
+        (e) => console.log(e))
+    }, 5000);
+  }, [])
 
 
   return (
@@ -59,7 +74,9 @@ export default function MapPage() {
       <GoogleMap
         // apiKey={null}
         center={[40.70,14.40]}
-        zoom={10}
+        zoom={10}  
+        yesIWantToUseGoogleMapApiInternals
+        onGoogleApiLoaded={({ map, maps }) => {}}
         // onBoundsChange={this._onBoundsChange}
         // onChildClick={this._onChildClick}
         // onChildMouseEnter={this._onChildMouseEnter}
@@ -69,7 +86,7 @@ export default function MapPage() {
         // distanceToMouse={this._distanceToMouse}
         >
           {allPins.map(i => 
-            <Marker lat={i.lat} lng={i.lng}  item={i} key={i.id}/>
+            <Marker lat={i.lat} lng={i.lng} item={i} key={i.id} onClick={() => navigateToPin(i.id)}/>
           )}
       </GoogleMap>
       </Main>

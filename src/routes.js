@@ -12,21 +12,26 @@ import DashboardAppPage from './pages/DashboardAppPage';
 import MapPage from './pages/MapPage';
 import ListPage from './pages/ListPage';
 import PinPage from './pages/PinPage';
+import LoadingPage from './pages/LoadingPage';
 
 // ----------------------------------------------------------------------
 
 export default function Router() {
   const routes = useRoutes([
     {
-      path: 'map',
+      path:"/",
+      element: <LoadingPage />,
+    },
+    {
+      path: '/map',
       element: <MapPage />,
     },
     {
-      path: 'list', 
+      path: '/list', 
       element: <ListPage />,
     },
     {
-      path: 'pin/:id', 
+      path: '/pin/:id', 
       element: <PinPage />,
     },
     {
@@ -43,18 +48,6 @@ export default function Router() {
     {
       path: 'login',
       element: <LoginPage />,
-    },
-    {
-      element: <SimpleLayout />,
-      children: [
-        { element: <Navigate to="/map" />, index: true },
-        { path: '404', element: <Page404 /> },
-        { path: '*', element: <Navigate to="/404" /> },
-      ],
-    },
-    {
-      path: '*',
-      element: <Navigate to="/map" replace />,
     },
   ]);
 
