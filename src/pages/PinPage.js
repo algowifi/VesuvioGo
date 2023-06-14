@@ -25,7 +25,7 @@ import {
   TableContainer,
   TablePagination,
 } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 // components
 import Label from '../components/label';
 import Iconify from '../components/iconify';
@@ -37,7 +37,7 @@ import USERLIST from '../_mock/user';
 //
 import Header from '../layouts/pin/header';
 import Nav from '../layouts/dashboard/nav';
-import { pins as allPins } from '../_mock/pins';
+import { getPinById } from '../_mock/pins';
 import RoundedPin from '../components/RoundedPin'
 
 // ----------------------------------------------------------------------
@@ -81,17 +81,43 @@ function descendingComparator(a, b, orderBy) {
 // ----------------------------------------------------------------------
 
 export default function MapPage() {
+  const {id:pinId} = useParams()
+  const [pin, setPin] = useState(null)
 
+  useState(() => {
+    if(pinId){
+      const loadPin = async () => {
+        setPin(await getPinById(pinId))
+      }
+      loadPin()
+    }
+  }, [pinId])
 
+  if(!pin) {
+    return <div>loading...</div>
+  }
 
   return (
     <StyledRoot>
       <Header/>
 
       <Main>
-          <Scrollbar>
-            There's still work to do
-          </Scrollbar>
+        <Container style={{padding:0}}>
+          <div alt={"alt text"} style={{
+            width: "100%", 
+            height:"30vh", 
+            backgroundImage:`url('${pin.thumbnail}')`,
+            backgroundSize: "cover",
+            backgroundRepeat: "no-repeat",
+            backgroundPosition: "center"
+          }}/>
+          <Container>
+            <Typography variant="h2">{pin.name}</Typography>
+            <Typography variant="p">
+              {pin.isVisited ? `You already visited this place and earned ${pin.points} points.` : `Visit this place and earn ${pin.points}.`}
+            </Typography>
+          </Container>
+        </Container>
       </Main>
     </StyledRoot>
   );

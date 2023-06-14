@@ -21,7 +21,7 @@ const pins = [
 ]
 
 const getPinById = id => {
-  return pins.find(i => i.id === id) || null
+  return pins.find(i => i.id.toString() === id.toString()) || null
 }
 
 export {

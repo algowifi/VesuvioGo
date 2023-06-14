@@ -3,6 +3,7 @@ import GoogleMap from 'google-map-react';
 import { Helmet } from 'react-helmet-async';
 // @mui
 import { styled } from '@mui/material/styles';
+import Icon from '@mui/material/Icon';
 
 import { useNavigate } from 'react-router-dom';
 //
@@ -36,7 +37,11 @@ const Main = styled('div')(({ theme }) => ({
 }));
 
 const Marker = ({item, onClick}) => {
-  return <RoundedPin src={item.thumbnail} onClick={onClick}/>
+  return <RoundedPin src={item.thumbnail} onClick={onClick} value={item.points}/>
+}
+
+const MarkerMyPosition = () => {
+  return <Icon style={{color:"orange", fontSize:40, width:40}}>location_on</Icon>
 }
 
 // ----------------------------------------------------------------------
@@ -88,6 +93,7 @@ export default function MapPage() {
           {allPins.map(i => 
             <Marker lat={i.lat} lng={i.lng} item={i} key={i.id} onClick={() => navigateToPin(i.id)}/>
           )}
+          {coords && <MarkerMyPosition lat={coords.latitude} lng={coords.longitude}/>}
       </GoogleMap>
       </Main>
     </StyledRoot>
