@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Vesuvio GO</title>
+    <script type="text/javascript">
+      const firstElementOfPath = "VesuvioGo"
+      var l = window.location.href.split(firstElementOfPath);
+
+      const redirectUrl = l[0]+firstElementOfPath+"?redirectPath="+encodeURIComponent(l[1])
+      window.location.replace(redirectUrl)
+    </script>
+  </head>
+  <body>
+  </body>
+</html>

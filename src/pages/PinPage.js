@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import GoogleMap from 'google-map-react';
 import { Helmet } from 'react-helmet-async';
 // @mui
@@ -25,7 +25,8 @@ import {
   TableContainer,
   TablePagination,
 } from '@mui/material';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
+import ConfettiExplosion from 'react-confetti-explosion';
 // components
 import Label from '../components/label';
 import Iconify from '../components/iconify';
@@ -76,15 +77,23 @@ function descendingComparator(a, b, orderBy) {
   return 0;
 }
 
+function useQuery() {
+  const { search } = useLocation();
+
+  return React.useMemo(() => new URLSearchParams(search), [search]);
+}
 
 
 // ----------------------------------------------------------------------
 
 export default function MapPage() {
   const {id:pinId} = useParams()
-  const [pin, setPin] = useState(null)
+  const query = useQuery();
 
-  useState(() => {
+  const [pin, setPin] = useState(null)  
+  const [isExploding, setIsExploding] = useState(false)
+
+  useEffect(() => {
     if(pinId){
       const loadPin = async () => {
         setPin(await getPinById(pinId))
@@ -92,6 +101,21 @@ export default function MapPage() {
       loadPin()
     }
   }, [pinId])
+
+  useEffect(() => {
+    if(!!query.get("justVisited") && pin && !pin.isVisited)
+      setVisited()
+  }, [pin])
+
+  const setVisited = () => {
+    if(pin){
+      setIsExploding(true)
+      setPin({
+        ...pin,
+        isVisited: true
+      })
+    }
+  }
 
   if(!pin) {
     return <div>loading...</div>
@@ -111,11 +135,26 @@ export default function MapPage() {
             backgroundRepeat: "no-repeat",
             backgroundPosition: "center"
           }}/>
-          <Container>
-            <Typography variant="h2">{pin.name}</Typography>
-            <Typography variant="p">
-              {pin.isVisited ? `You already visited this place and earned ${pin.points} points.` : `Visit this place and earn ${pin.points}.`}
-            </Typography>
+          <Container style={{padding:0}}>
+            <Container>
+              <Typography variant="h2">{pin.name}</Typography>
+              <Typography variant="p">
+                {pin.isVisited ? `You already visited this place and earned ${pin.points} points.` : `Visit this place and earn ${pin.points} points.`}
+              </Typography>
+            </Container>
+            <Container style={{display:"flex",justifyContent:"center", width:"100%", marginTop:40, flexDirection:"column", alignItems:"center"}}>
+              <Button variant="contained" disabled={pin.isVisited} onClick={setVisited}>Mark as visited</Button>
+              {isExploding && <ConfettiExplosion 
+                  style={{}}
+                  particleCount={400}
+                  particleSize={18}
+                  force={1}
+                  height="150vh"
+                  width={1000}
+                  duration={3000}
+                  onComplete={() => setIsExploding(true)} 
+                />}
+            </Container>
           </Container>
         </Container>
       </Main>

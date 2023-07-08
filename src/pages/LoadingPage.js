@@ -1,9 +1,23 @@
 import React, {useEffect, useState} from 'react'
 import { CircularProgress, Typography } from '@mui/material';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 
+function useQuery() {
+  const { search } = useLocation();
+
+  return React.useMemo(() => new URLSearchParams(search), [search]);
+}
 
 export default () => {
+
+  const navigate = useNavigate();
+  const query = useQuery()
+  const redirectIfNeeded = () => {
+    const url = query.get("redirectPath")
+    if(url){
+      navigate(url)
+    }
+  }
 
   const [showLogo, setShowLogo] = useState(true)
   useEffect(() => {
@@ -21,6 +35,7 @@ export default () => {
       (i) => {
         setWaitForGeolocResponse(false)
         setGeolocBlocked(false)
+        redirectIfNeeded()
       }, 
       (e) => {
         setWaitForGeolocResponse(false)
